@@ -9,6 +9,22 @@ i = 0
 e_texto = Entry(ventana, font=("calibri 20"))
 e_texto.grid(row=0, column= 0, columnspan= 4, padx= 5, pady= 5 )
 
+#Funciones
+def click_boton(valor):
+    global i
+    e_texto.insert(i, valor)
+    i += 1
+
+def borrar():
+    e_texto.delete(0, END)
+    i=0
+
+def operacion():
+    ecuacion = e_texto.get()
+    result= eval(ecuacion)
+    e_texto.delete(0, END)
+    e_texto.insert(0, result)
+    i = 0
 
 #Botones
 
@@ -23,7 +39,7 @@ boton8 = Button(ventana, text= "8", width=5, height=2, command= lambda : click_b
 boton9 = Button(ventana, text= "9", width=5, height=2, command= lambda : click_boton(9))
 boton0 = Button(ventana, text= "0", width=15, height=2, command= lambda : click_boton(0))
 
-boton_borrar = Button(ventana, text= "AC", width=5, height=2 )
+boton_borrar = Button(ventana, text= "AC", width=5, height=2, command= lambda :borrar() )
 boton_parentesos1 = Button(ventana, text= "(", width=5, height=2, command= lambda : click_boton("("))
 boton_parentesos2 = Button(ventana, text= ")", width=5, height=2, command= lambda : click_boton(")"))
 
@@ -31,7 +47,7 @@ boton_suma = Button(ventana, text= "+", width=5, height=2, command= lambda : cli
 boton_resta = Button(ventana, text= "-", width=5, height=2, command= lambda : click_boton("-"))
 boton_multiplicacion = Button(ventana, text= "*", width=5, height=2, command= lambda : click_boton("*"))
 boton_division = Button(ventana, text= "/", width=5, height=2, command= lambda : click_boton("/"))
-boton_igual = Button(ventana, text= "=", width=5, height=2 )
+boton_igual = Button(ventana, text= "=", width=5, height=2,command= lambda : operacion() )
 boton_punto = Button(ventana, text= ".", width=5, height=2, command= lambda : click_boton("."))
 
 #agregar botones
